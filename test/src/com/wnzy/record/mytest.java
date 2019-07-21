@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+//邮箱
 public class mytest {
 	public static void main(String[] args) {
 		// 创建list集合并调用实体类里面的setRecord方法
