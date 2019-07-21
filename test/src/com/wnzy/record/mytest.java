@@ -5,49 +5,50 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-//ÓÊÏä
-//ÔÙ´ÎÌá½»
+//é‚®ç®±
+//å†æ¬¡æäº¤
+//æ·»åŠ æ›´æ–°
 public class mytest {
 	public static void main(String[] args) {
-		// ´´½¨list¼¯ºÏ²¢µ÷ÓÃÊµÌåÀàÀïÃæµÄsetRecord·½·¨
+		// åˆ›å»ºlisté›†åˆå¹¶è°ƒç”¨å®ä½“ç±»é‡Œé¢çš„setRecordæ–¹æ³•
 		List<Record> list = Record.setRecord();
-		// ¸ù¾İcollect×éºÏÍ¨¹ıgroupingBy·Ö×éÈ»ºóÍ¨¹ıcounting·½·¨À´Í³¼ÆÈËÊı
+		// æ ¹æ®collectç»„åˆé€šè¿‡groupingByåˆ†ç»„ç„¶åé€šè¿‡countingæ–¹æ³•æ¥ç»Ÿè®¡äººæ•°
 		Map<String, Long> collect = list.stream()
 				.collect(Collectors.groupingBy(Record::getLevel, Collectors.counting()));
 		System.out.println(collect);
-		// µ÷ÓÃµÚ¶ş¸ö·½·¨
+		// è°ƒç”¨ç¬¬äºŒä¸ªæ–¹æ³•
 		er();
-		// µ÷ÓÃµÚÈı·½·¨
+		// è°ƒç”¨ç¬¬ä¸‰æ–¹æ³•
 		san();
 	}
 
 	public static void er() {
-		// ´´½¨list¼¯ºÏ²¢µ÷ÓÃÊµÌåÀàÀïÃæµÄsetRecord·½·¨
+		// åˆ›å»ºlisté›†åˆå¹¶è°ƒç”¨å®ä½“ç±»é‡Œé¢çš„setRecordæ–¹æ³•
 		List<Record> users = Record.setRecord();
-		// µ÷ÓÃSereamÁ÷
+		// è°ƒç”¨Sereamæµ
 		List<String> collect = users.stream().
-		// ¸ù¾İfilter½øĞĞ¹ıÂËÉ¸Ñ¡¸ù¾İgetTeacher´«À´µÄÖµ²¢¸ù¾İliÀ´ÅĞ¶ÏmapÀïÃæµÄgetStudentµÄÖµ²¢×°ÔÚÒ»¸ö¼¯ºÏÀïÃæ
+		// æ ¹æ®filterè¿›è¡Œè¿‡æ»¤ç­›é€‰æ ¹æ®getTeacherä¼ æ¥çš„å€¼å¹¶æ ¹æ®liæ¥åˆ¤æ–­mapé‡Œé¢çš„getStudentçš„å€¼å¹¶è£…åœ¨ä¸€ä¸ªé›†åˆé‡Œé¢
 				filter(Record -> Record.getTeacher().indexOf("li") > -1).map(Record::getStudent)
 				.collect(Collectors.toList());
-		// ´òÓ¡
-		System.out.println("ÀîÀÏÊ¦µÄÑ§Éú" + collect);
+		// æ‰“å°
+		System.out.println("æè€å¸ˆçš„å­¦ç”Ÿ" + collect);
 
 	}
 
 	public static void san() {
-		// ´´½¨list¼¯ºÏ²¢µ÷ÓÃÊµÌåÀàÀïÃæµÄsetRecord·½·¨
+		// åˆ›å»ºlisté›†åˆå¹¶è°ƒç”¨å®ä½“ç±»é‡Œé¢çš„setRecordæ–¹æ³•
 		List<Record> users = Record.setRecord();
-		// µ÷ÓÃSereamÁ÷²¢´¢´æµ½Ò»¸ö¼¯ºÏÀïÃæ
+		// è°ƒç”¨Sereamæµå¹¶å‚¨å­˜åˆ°ä¸€ä¸ªé›†åˆé‡Œé¢
 		Map<String, Map<String, List<Long>>> collect = users.stream().
-		// ¸ù¾İgroupingBy·Ö×é²¢Í¨¹ıgetTeacher´«¹ıÀ´µÄÖµ½øĞĞ·Ö×é²¢Í³Ò»¼ÆÊı
+		// æ ¹æ®groupingByåˆ†ç»„å¹¶é€šè¿‡getTeacherä¼ è¿‡æ¥çš„å€¼è¿›è¡Œåˆ†ç»„å¹¶ç»Ÿä¸€è®¡æ•°
 				collect(Collectors.groupingBy(Record::getTeacher, Collectors.groupingBy(Record::getLevel,
 						Collectors.collectingAndThen(Collectors.toList(), list1 -> {
 							long count = list1.stream().count();
-							// ·µ»ØÒ»¸öArrays²¢Í³Ò»¼ÆÊı
+							// è¿”å›ä¸€ä¸ªArrayså¹¶ç»Ÿä¸€è®¡æ•°
 							return Arrays.asList(count);
 
 						}))));
-		// ´òÓ¡
+		// æ‰“å°
 		System.out.println(collect);
 	}
 }
